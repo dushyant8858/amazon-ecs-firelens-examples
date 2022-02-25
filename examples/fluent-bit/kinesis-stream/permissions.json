@@ -3,7 +3,7 @@
 	"Statement": [{
 		"Effect": "Allow",
 		"Action": [
-			"firehose:PutRecordBatch"
+			"kinesis:PutRecords"
 		],
 		"Resource": "*"
 	}]

@@ -12,13 +12,18 @@ We want examples of as many use cases in this repository as possible! Submit a P
 ### Basic FireLens examples
 * [Using the 'file' 'config-file-type'](examples/fluent-bit/config-file-type-file)
 * [Using EFS to store configuration files](examples/fluent-bit/efs)
+* [Specifying buffer limit size with 'Fluentd' log driver](examples/fluent-bit/log-driver-buffer-limit)
+
+### Multiline Examples
+* [Concat multiline logs using regex parsers](examples/fluent-bit/filter-multiline)
 
 ### Fluent Bit Examples
 
 * [Send to CloudWatch Logs](examples/fluent-bit/cloudwatchlogs)
 * [Send to Kinesis Data Firehose](examples/fluent-bit/kinesis-firehose)
+* [Send to Kinesis Data Stream](examples/fluent-bit/kinesis-stream)
 * [Send to S3](examples/fluent-bit/s3)
-* [Send to Amazon ElasticSearch Service](examples/fluent-bit/amazon-elasticsearch)
+* [Send to Amazon OpenSearch Service](examples/fluent-bit/amazon-opensearch)
 * [Enable Debug Logging](examples/fluent-bit/enable-debug-logging)
 * [Forward to a Fluentd or Fluent Bit Log Aggregator](examples/fluent-bit/forward-to-aggregator)
 * [Parse Serialized JSON](examples/fluent-bit/parse-json)
@@ -33,6 +38,7 @@ We want examples of as many use cases in this repository as possible! Submit a P
 * [SolarWinds Loggly](examples/fluent-bit/solarwinds-loggly)
 * [Sematext Logs](examples/fluent-bit/sematext)
 * [Logstash](examples/fluent-bit/logstash)
+* [Elastic Cloud](examples/fluent-bit/elastic-cloud)
 
 ### Fluentd Examples
 

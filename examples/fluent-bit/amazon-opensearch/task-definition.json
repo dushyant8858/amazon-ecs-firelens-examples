@@ -1,10 +1,11 @@
 {
-	"family": "firelens-example-forward",
+	"family": "firelens-example-cloudwatch",
+	"taskRoleArn": "arn:aws:iam::XXXXXXXXXXXX:role/ecs_task_iam_role",
 	"executionRoleArn": "arn:aws:iam::XXXXXXXXXXXX:role/ecs_task_execution_role",
 	"containerDefinitions": [
 		{
 			"essential": true,
-			"image": "amazon/aws-for-fluent-bit:stable",
+			"image": "906394416424.dkr.ecr.us-east-1.amazonaws.com/aws-for-fluent-bit:stable",
 			"name": "log_router",
 			"firelensConfiguration": {
 				"type": "fluentbit"
@@ -22,14 +23,19 @@
 		 },
 		 {
 			 "essential": true,
-			 "image": "httpd",
+			 "image": "nginx",
 			 "name": "app",
 			 "logConfiguration": {
 				 "logDriver":"awsfirelens",
 				 "options": {
-					"Name": "forward",
-					"Host": "fluentdhost",
-					"Port": "24224"
+					"Name": "es",
+					"Host": "vpc-fake-domain-ke7thhzo07jawrhmz6mb7ite7y.us-west-2.es.amazonaws.com",
+					"Port": "443",
+					"Index": "my_index",
+					"Type": "my_type",
+					"Aws_Auth": "On",
+					"Aws_Region": "us-west-2",
+					"tls": "On"
 				}
 			},
 			"memoryReservation": 100

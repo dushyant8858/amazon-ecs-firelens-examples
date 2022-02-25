@@ -1,10 +1,11 @@
 {
-	"family": "firelens-example-forward",
+	"family": "firelens-example-buffer-limit",
+	"taskRoleArn": "arn:aws:iam::XXXXXXXXXXXX:role/ecs_task_iam_role",
 	"executionRoleArn": "arn:aws:iam::XXXXXXXXXXXX:role/ecs_task_execution_role",
 	"containerDefinitions": [
 		{
 			"essential": true,
-			"image": "amazon/aws-for-fluent-bit:stable",
+			"image": "906394416424.dkr.ecr.us-east-1.amazonaws.com/aws-for-fluent-bit:stable",
 			"name": "log_router",
 			"firelensConfiguration": {
 				"type": "fluentbit"
@@ -22,14 +23,17 @@
 		 },
 		 {
 			 "essential": true,
-			 "image": "httpd",
+			 "image": "nginx",
 			 "name": "app",
 			 "logConfiguration": {
 				 "logDriver":"awsfirelens",
 				 "options": {
-					"Name": "forward",
-					"Host": "fluentdhost",
-					"Port": "24224"
+					"Name": "cloudwatch",
+					"region": "us-west-2",
+					"log_group_name": "/aws/ecs/containerinsights/$(ecs_cluster)/application",
+					"auto_create_group": "true",
+					"log_stream_name": "$(ecs_task_id)",
+					"log-driver-buffer-limit": "2097152"
 				}
 			},
 			"memoryReservation": 100

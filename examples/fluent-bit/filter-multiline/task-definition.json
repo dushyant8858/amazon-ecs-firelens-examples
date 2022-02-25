@@ -1,14 +1,18 @@
 {
-	"family": "firelens-example-cloudwatch",
+	"family": "firelens-example-multiline",
 	"taskRoleArn": "arn:aws:iam::XXXXXXXXXXXX:role/ecs_task_iam_role",
 	"executionRoleArn": "arn:aws:iam::XXXXXXXXXXXX:role/ecs_task_execution_role",
 	"containerDefinitions": [
 		{
 			"essential": true,
-			"image": "906394416424.dkr.ecr.us-east-1.amazonaws.com/aws-for-fluent-bit:latest",
+			"image": "111111111111.dkr.ecr.us-west-2.amazonaws.com/custom-fluent-bit-multiline-example:latest",
 			"name": "log_router",
 			"firelensConfiguration": {
-				"type": "fluentbit"
+				"type": "fluentbit",
+                "options": {
+					"config-file-type": "file",
+					"config-file-value": "/extra.conf"
+				}
 			},
 			"logConfiguration": {
 				"logDriver": "awslogs",
@@ -23,19 +27,16 @@
 		 },
 		 {
 			 "essential": true,
-			 "image": "nginx",
+			 "image": "111111111111.dkr.ecr.us-west-2.amazonaws.com/multiline-example-app:latest",
 			 "name": "app",
 			 "logConfiguration": {
 				 "logDriver":"awsfirelens",
 				 "options": {
-					"Name": "es",
-					"Host": "vpc-fake-domain-ke7thhzo07jawrhmz6mb7ite7y.us-west-2.es.amazonaws.com",
-					"Port": "443",
-					"Index": "my_index",
-					"Type": "my_type",
-					"Aws_Auth": "On",
-					"Aws_Region": "us-west-2",
-					"tls": "On"
+					"Name": "cloudwatch_logs",
+					"region": "us-west-2",
+					"log_group_name": "multiline-test/application",
+					"auto_create_group": "true",
+					"log_stream_prefix": "multiline-"
 				}
 			},
 			"memoryReservation": 100

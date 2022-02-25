@@ -3,7 +3,10 @@
 	"Statement": [{
 		"Effect": "Allow",
 		"Action": [
-			"firehose:PutRecordBatch"
+			"logs:CreateLogStream",
+			"logs:CreateLogGroup",
+			"logs:DescribeLogStreams",
+			"logs:PutLogEvents"
 		],
 		"Resource": "*"
 	}]

@@ -1,5 +1,6 @@
 {
-	"family": "firelens-example-forward",
+	"family": "firelens-example-kinesis-data-stream",
+	"taskRoleArn": "arn:aws:iam::XXXXXXXXXXXX:role/ecs_task_iam_role",
 	"executionRoleArn": "arn:aws:iam::XXXXXXXXXXXX:role/ecs_task_execution_role",
 	"containerDefinitions": [
 		{
@@ -27,9 +28,9 @@
 			 "logConfiguration": {
 				 "logDriver":"awsfirelens",
 				 "options": {
-					"Name": "forward",
-					"Host": "fluentdhost",
-					"Port": "24224"
+					"Name": "kinesis_streams",
+					"region": "us-west-2",
+					"stream": "my-data-stream"
 				}
 			},
 			"memoryReservation": 100
